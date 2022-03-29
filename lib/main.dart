@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: BlocProvider(
           create: (context) =>
-              EarthquakeBloc(EarthquakeInitial(), EarthquakeRepository()),
+              EarthquakeBloc(EarthquakeInitial(), EarthquakeRepository())..add(InitialEvent()),
           child: HomePage(),
         ));
   }
