@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:bloc_earthquake_app/bloc/earthquake_bloc.dart';
+import 'package:bloc_earthquake_app/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,17 +25,17 @@ class _HomePageState extends State<HomePage> {
       child: BlocBuilder<EarthquakeBloc, EarthquakeState>(
         builder: (context, state) {
           if (state is EarthquakeLoadingState) {
-            return Center(child: CircularProgressIndicator());
+            return Center(child: CircularProgressIndicator(color: Colors.red,));
           } else if (state is EarthquakeLoadedState) {
             return ListView.builder(
                 itemCount: state.earthquake!.result!.length,
                 itemBuilder: (context, index) {
                   return Card(
-                    color: Colors.red,
+                    color: Colors.red[400],
                     child: ListTile(
                       leading: Text(
                         (index + 1).toString(),
-                        //style: AppTextStyle.sizedText,
+                        style: AppTextStyles.boldAndSizedText,
                       ),
                       title: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,17 +44,16 @@ class _HomePageState extends State<HomePage> {
                           Text(
                             state.earthquake!.result![index].title.toString(),
                             textAlign: TextAlign.center,
-                            //style: AppTextStyle.boldAndSizedText,
+                            style: AppTextStyles.boldAndSizedText,
                           ),
                           Text(
                             state.earthquake!.result![index].date.toString(),
-                            //style: AppTextStyle.boldAndSizedText,
                           ),
                         ],
                       ),
                       trailing: Text(
                         '${state.earthquake!.result![index].mag}',
-                        //style: AppTextStyle.boldAndSizedText,
+                        style: AppTextStyles.boldText,
                       ),
                     ),
                   );
